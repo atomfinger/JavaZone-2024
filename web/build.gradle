@@ -1,18 +1,4 @@
-plugins {
-    id 'java'
-}
-
-group = 'io.github.atomfinger.javazone.bookstore'
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-test {
-    useJUnitPlatform()
 }
