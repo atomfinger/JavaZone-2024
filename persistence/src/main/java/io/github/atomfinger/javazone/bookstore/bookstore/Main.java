@@ -1,4 +1,4 @@
-package io.github.atomfinger.javazone.bookstore;
+package io.github.atomfinger.javazone.bookstore.bookstore;
 
 public class Main {
     public static void main(String[] args) {

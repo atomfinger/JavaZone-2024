@@ -1,4 +1,33 @@
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+plugins {
+    id 'groovy'
+    id 'org.springframework.cloud.contract' version '4.1.3'
+}
 
+ext {
+    set('springCloudVersion', "2023.0.2")
+}
+
+dependencies {
+    implementation project(':service')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation('org.springframework.cloud:spring-cloud-starter-contract-verifier')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}
+
+contracts {
+    contractsDslDir = file("src/test/resources/contracts")
+    testFramework = "JUNIT5"
+    baseClassMappings {
+        baseClassMapping(".*consumer1.*", "io.github.atomfinger.javazone.bookstore.contract_test.Consumer1Base")
+    }
+}
+
+contractTest {
+    useJUnitPlatform()
 }
