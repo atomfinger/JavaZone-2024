@@ -21,7 +21,7 @@ public class ListBooksTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    void greetingShouldReturnDefaultMessage() {
+    void given_that_a_book_exists_then_we_should_have_one_listed_out_when_listing_out_books() {
         var result = restTemplate.getForObject("http://localhost:" + port + "/api/books", String.class);
         JsonApprovals.verifyJson(result);
     }
