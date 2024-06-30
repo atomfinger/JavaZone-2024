@@ -19,7 +19,7 @@ Given that books exists, then they should be returned.
         body([
                 [title      : "Test",
                  description: "More test",
-                 author     : "John"]
+                 authorName : "John"]
         ])
         headers {
             contentType(applicationJson())

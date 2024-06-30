@@ -5,15 +5,19 @@ plugins {
 
 ext {
     set('springCloudVersion', "2023.0.2")
+    set('testcontainers.version', "1.19.8")
 }
 
 dependencies {
     implementation project(':service')
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
-    testImplementation('org.springframework.cloud:spring-cloud-starter-contract-verifier')
-    testImplementation("com.approvaltests:approvaltests:24.2.0")
+    implementation project(':persistence')
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+    testImplementation 'com.approvaltests:approvaltests:24.2.0'
     testImplementation 'com.google.code.gson:gson:2.11.0'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.flywaydb:flyway-core'
+
 }
 
 dependencyManagement {
