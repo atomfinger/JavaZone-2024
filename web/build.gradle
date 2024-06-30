@@ -13,6 +13,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
     testImplementation('org.springframework.cloud:spring-cloud-starter-contract-verifier')
     testImplementation("com.approvaltests:approvaltests:24.2.0")
+    testImplementation 'com.google.code.gson:gson:2.11.0'
 }
 
 dependencyManagement {

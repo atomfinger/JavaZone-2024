@@ -23,6 +23,6 @@ public class ListBooksTest {
     @Test
     void greetingShouldReturnDefaultMessage() {
         var result = restTemplate.getForObject("http://localhost:" + port + "/api/books", String.class);
-        Approvals.verify(result);
+        JsonApprovals.verifyJson(result);
     }
 }
