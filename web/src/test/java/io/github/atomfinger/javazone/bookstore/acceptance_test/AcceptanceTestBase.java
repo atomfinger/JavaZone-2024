@@ -1,6 +1,5 @@
 package io.github.atomfinger.javazone.bookstore.acceptance_test;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +17,14 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public abstract class AcceptanceTestBase {
 
     @Container
-    public static PostgreSQLContainer<?> postgresDB = new PostgreSQLContainer<>("postgres:15-alpine")
-            .withDatabaseName("testdb")
-            .withUsername("test")
-            .withPassword("test");
-
-    @LocalServerPort
-    private int port;
-
+    public static PostgreSQLContainer<?> postgresDB = new PostgreSQLContainer<>("postgres:15-alpine").withDatabaseName(
+            "testdb").withUsername("test").withPassword("test");
     @Autowired
     public TestRestTemplate restTemplate;
+    @LocalServerPort
+    private int port;
+    @Autowired
+    private Flyway flyway;
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
@@ -37,9 +34,6 @@ public abstract class AcceptanceTestBase {
         registry.add("spring.flyway.cleanDisabled", () -> false);
     }
 
-    @Autowired
-    private Flyway flyway;
-
     @BeforeEach
     public void resetDb() {
         flyway.clean();
@@ -48,7 +42,6 @@ public abstract class AcceptanceTestBase {
 
     /**
      * Creates the URL for the service running locally.
-     * @return
      */
     public String getUrl() {
         return "http://localhost:" + port + "/api";
