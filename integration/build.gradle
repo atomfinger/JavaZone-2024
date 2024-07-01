@@ -5,6 +5,8 @@ plugins {
 dependencies {
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
     implementation 'org.springframework.cloud:spring-cloud-contract-stub-runner'
+    testImplementation 'org.assertj:assertj-core:3.26.0'
+    testImplementation project(':external_orderservice')
 }
 
 

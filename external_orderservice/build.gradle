@@ -38,6 +38,18 @@ contracts {
     contractsDslDir = file("src/test/resources/contracts")
 }
 
+tasks.generateClientStubs {
+    outputs.upToDateWhen { false }
+}
+
+tasks.publishToMavenLocal {
+    outputs.upToDateWhen { false }
+}
+
+tasks.build {
+    finalizedBy(publishToMavenLocal)
+}
+
 /**
  * This is just to publish the stubs jar locally. See:
  * https://docs.spring.io/spring-cloud-contract/docs/current/reference/html/gradle-project.html#gradle-publishing-stubs-to-artifact-repo

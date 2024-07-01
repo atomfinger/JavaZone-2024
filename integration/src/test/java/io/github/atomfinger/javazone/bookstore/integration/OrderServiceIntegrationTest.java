@@ -14,6 +14,8 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest(classes = {TestApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ExtendWith({SpringExtension.class, StubRunnerExtension.class})
 @AutoConfigureStubRunner(
@@ -38,6 +40,9 @@ class OrderServiceIntegrationTest {
                         "9780061120084"
                 )
         );
-        Assert.isTrue(false, "");
+        assertThat(result)
+                .containsEntry("9780142424179", 100)
+                .containsEntry( "9780765326355", 42)
+                .containsEntry( "9780061120084", 0);
     }
 }

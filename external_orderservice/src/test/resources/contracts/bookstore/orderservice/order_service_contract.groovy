@@ -8,18 +8,18 @@ Contract.make {
     request {
         method 'POST'
         url "/orders"
-        body = body(["9780142424179",
-              "9780765326355",
-              "9780061120084",])
+        body = body([isbns: [[code: "9780142424179"],
+                             [code: "9780765326355"],
+                             [code: "9780061120084"]]])
         headers {
             contentType(applicationJson())
         }
     }
     response {
         status 200
-        body = body([data: [[isbn       : [code: "9780142424179"], order_count: 100],
-                     [isbn       : [code: "9780765326355"], order_count: 42],
-                     [isbn       : [code: "9780061120084"], order_count: 0]]])
+        body = body([data: [[isbn: [code: "9780142424179"], order_count: 100],
+                            [isbn: [code: "9780765326355"], order_count: 42],
+                            [isbn: [code: "9780061120084"], order_count: 0]]])
         headers {
             contentType(applicationJson())
         }
