@@ -31,5 +31,4 @@ public class OrderServiceIntegration {
                 .stream()
                 .collect(Collectors.toMap(bookOrder -> bookOrder.getIsbn().getCode(), BookOrder::getOrderCount));
     }
-
 }
