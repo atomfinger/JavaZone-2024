@@ -1,0 +1,38 @@
+plugins {
+    id "org.openapi.generator" version "7.5.0"
+}
+
+dependencies {
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+compileJava.dependsOn "openApiGenerate"
+
+openApiGenerate {
+    generatorName = "java"
+    inputSpec = "${projectDir}/src/main/resources/specs/orderservice.yml"
+    apiPackage = "io.github.atomfinger.javazone.bookstore.orderservice.api"
+    modelPackage = "io.github.atomfinger.javazone.bookstore.orderservice.model"
+    invokerPackage = "io.github.atomfinger.javazone.bookstore.orderservice.invoker"
+    groupId = "io.github.atomfinger.javazone.bookstore.orderservice"
+    apiNameSuffix = "OrderServiceClient"
+    configOptions = [library    : 'resttemplate',
+                     useJakartaEe: "true",
+                     dateLibrary: "java8",]
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir("${buildDir}/generate-resources/main/src/main/java")
+        }
+    }
+}

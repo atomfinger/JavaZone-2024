@@ -6,6 +6,12 @@
 
 ### Description
 
+#### Package Overview
+
+- Web: Contains the web API
+- Service: Contains "Domain logic" and ties the system together
+- Persistence: Contains everything related to databases, including database entities
+
 #### Test related tools used in the project
 
 - [Spring Cloud Contract](https://spring.io/projects/spring-cloud-contract): Used to write contracts and generate

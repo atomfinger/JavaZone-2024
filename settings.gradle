@@ -2,4 +2,5 @@ rootProject.name = 'bookstore'
 include 'web'
 include 'persistence'
 include 'service'
+include 'integration'
 

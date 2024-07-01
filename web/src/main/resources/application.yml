@@ -8,3 +8,7 @@ spring:
     locations: classpath:db/migrations
     baseline-on-migrate: true
     out-of-order: true
+
+
+api:
+  bookstore-endpoint: https://api.bookstore.com/v1

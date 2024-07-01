@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Bookstore Order Service
+  description: This API returns the number of orders for each book based on the given list of ISBNs.
+  version: 1.0.0
+servers:
+  - url: https://api.bookstore.com/v1
+    description: Production server
+  - url: https://staging.api.bookstore.com/v1
+    description: Staging server
+paths:
+  /orders:
+    post:
+      summary: Get number of orders for books
+      description: Takes a list of ISBN numbers and returns the number of orders for each book.
+      requestBody:
+        description: List of ISBN numbers
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isbns:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ISBN'
+              required:
+                - isbns
+      responses:
+        '200':
+          description: A wrapped response containing a list of books with their order counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BookOrder'
+                example:
+                  data:
+                    - isbn:
+                        code: "9781234567897"
+                      order_count: 42
+                    - isbn:
+                        code: "9781234567880"
+                      order_count: 35
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+                example:
+                  error: "Bad Request"
+                  message: "Invalid ISBN format or missing ISBNs"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+                example:
+                  error: "Internal Server Error"
+                  message: "An unexpected error occurred"
+components:
+  schemas:
+    ISBN:
+      type: object
+      properties:
+        code:
+          type: string
+          pattern: "^(97(8|9))?\\d{9}(\\d|X)$"
+    BookOrder:
+      type: object
+      properties:
+        isbn:
+          $ref: '#/components/schemas/ISBN'
+        order_count:
+          type: integer
+      required:
+        - isbn
+        - order_count
+security:
+  - ApiKeyAuth: []
