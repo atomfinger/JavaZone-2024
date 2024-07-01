@@ -1,7 +1,5 @@
 ## Note
 
-Technically this is not the way to do it. The producer will most likely have the
-contracts stored in their repo, or in some shared repo - not on the client side.
+Pretend this project doesn't exist.
 
-The reason we're doing it here is for simplicity. This way we can generate stubs and pretend we are the consumer for
-this imaginary service.
+It is just a way to easily generate some stubs and pretend that it comes from some other service, and simply publish it through local maven. This is not how one would usually do it. 
