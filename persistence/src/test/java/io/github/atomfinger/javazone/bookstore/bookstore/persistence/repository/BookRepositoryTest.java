@@ -20,6 +20,7 @@ public class BookRepositoryTest extends BaseDatabaseIntegrationTest {
         bookRepository.save(getBook());
         var book = bookRepository.findAll().iterator().next();
         assertThat(book).satisfies(actual -> {
+            assertThat(actual).hasNoNullFieldsOrProperties(); //Verifies that we test all the fields in the class
             assertThat(actual).usingRecursiveComparison().ignoringFields("bookId").isEqualTo(getBook());
             assertThat(book.getBookId()).isNotNull();
         });
