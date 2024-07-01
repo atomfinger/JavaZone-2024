@@ -12,6 +12,7 @@
   contract tests.
 - [TestContainers](https://testcontainers.com/): Used to spin up dependencies, such as Postgresql.
 - [ApprovalTests](https://approvaltests.com/): Simplifies validating returns from APIs - especially for larger responses.
+- [AssertJ](https://assertj.github.io/doc/): More expressive and easier asserts.
 
 
 ### Requirements
