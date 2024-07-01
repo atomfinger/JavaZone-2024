@@ -15,6 +15,11 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
+    ext {
+        set('springCloudVersion', "2023.0.2")
+        set('testcontainers.version', "1.19.8")
+    }
+
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(21)
@@ -27,7 +32,6 @@ subprojects {
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }

@@ -27,9 +27,9 @@ public class OrderServiceIntegration {
             isbn.code(x);
             return isbn;
         }).toList());
-        return Objects.requireNonNull(orderServiceClient.ordersPost(request).getData())
+        var response = orderServiceClient.ordersPost(request).getData();
+        return Objects.requireNonNull(response)
                 .stream()
                 .collect(Collectors.toMap(bookOrder -> bookOrder.getIsbn().getCode(), BookOrder::getOrderCount));
     }
-
 }

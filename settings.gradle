@@ -3,4 +3,5 @@ include 'web'
 include 'persistence'
 include 'service'
 include 'integration'
+include 'external_orderservice'
 

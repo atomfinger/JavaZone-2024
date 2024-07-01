@@ -1,0 +1,63 @@
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+    id 'org.springframework.cloud.contract' version '4.1.3'
+}
+
+
+dependencies {
+    project(":external_orderservice")
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+}
+
+contracts {
+    contractsDslDir = file("src/test/resources/contracts")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}
+
+generateContractTests {
+    // Disabling test generation as this application is supposed to be the consumer
+    // and therefore not actually have the contracts locally.
+    enabled = false
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+contracts {
+    contractsDslDir = file("src/test/resources/contracts")
+}
+
+tasks.generateClientStubs {
+    outputs.upToDateWhen { false }
+}
+
+tasks.publishToMavenLocal {
+    outputs.upToDateWhen { false }
+}
+
+tasks.build {
+    finalizedBy(publishToMavenLocal)
+}
+
+/**
+ * This is just to publish the stubs jar locally. See:
+ * https://docs.spring.io/spring-cloud-contract/docs/current/reference/html/gradle-project.html#gradle-publishing-stubs-to-artifact-repo
+ */
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact verifierStubsJar
+        }
+    }
+}
