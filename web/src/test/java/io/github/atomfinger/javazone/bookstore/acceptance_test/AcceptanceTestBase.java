@@ -2,6 +2,7 @@ package io.github.atomfinger.javazone.bookstore.acceptance_test;
 
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeEach;
+import org.mockserver.client.MockServerClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -13,9 +14,9 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.containers.MockServerContainer;
-import org.mockserver.client.server.MockServerClient;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Testcontainers
 public abstract class AcceptanceTestBase {
 
   @Container
@@ -27,12 +28,12 @@ public abstract class AcceptanceTestBase {
       .withTag("mockserver-" + MockServerClient.class.getPackage().getImplementationVersion());
 
   @Container
-  public MockServerContainer mockServer = new MockServerContainer(MOCKSERVER_IMAGE);
+  public static MockServerContainer mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE);
 
   @Autowired
   public TestRestTemplate restTemplate;
 
-  public static MockServerClient mockServerClient = new MockServerClient(mockserver.getServerPort());
+  public MockServerClient mockServerClient = new MockServerClient("localhost", mockServerContainer.getServerPort());
 
   @LocalServerPort
   private int port;
@@ -49,7 +50,7 @@ public abstract class AcceptanceTestBase {
 
   @BeforeEach
   public void resetDb() {
-    mockserverClient.reset();
+    mockServerClient.reset();
     flyway.clean();
     flyway.migrate();
   }
