@@ -1,23 +1,20 @@
 package io.github.atomfinger.javazone.bookstore.acceptance_test.tests;
 
-import io.github.atomfinger.javazone.bookstore.acceptance_test.AcceptanceTestBase;
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
-import org.approvaltests.JsonApprovals;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockserver.model.Header;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import org.approvaltests.JsonApprovals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import io.github.atomfinger.javazone.bookstore.acceptance_test.AcceptanceTestBase;
+import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
 
 public class ListBooksTest extends AcceptanceTestBase {
 
