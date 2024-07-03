@@ -15,8 +15,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.containers.MockServerContainer;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class AcceptanceTestBase {
 
   @Container
@@ -46,6 +46,7 @@ public abstract class AcceptanceTestBase {
     registry.add("spring.datasource.username", postgresDB::getUsername);
     registry.add("spring.datasource.password", postgresDB::getPassword);
     registry.add("spring.flyway.cleanDisabled", () -> false);
+    registry.add("api.bookstore-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort());
   }
 
   @BeforeEach
