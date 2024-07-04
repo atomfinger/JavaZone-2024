@@ -14,11 +14,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class BestReadsIntegration {
+public class BestReadsServiceIntegration {
 
     String bestReadsEndpoint;
 
-    public BestReadsIntegration(ApiConfiguration apiConfiguration) {
+    public BestReadsServiceIntegration(ApiConfiguration apiConfiguration) {
         bestReadsEndpoint = apiConfiguration.getBestReadsEndpoint();
     }
 

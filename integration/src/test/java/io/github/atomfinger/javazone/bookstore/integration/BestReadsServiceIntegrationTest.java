@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 /**
  * This is an example of a test where we integrate with a service that does not have:
@@ -21,20 +22,20 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
  * <p>
  * It
  */
-class BestReadsIntegrationTest extends BaseIntegrationTest {
+class BestReadsServiceIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
-    BestReadsIntegration bestReadsIntegration;
+    BestReadsServiceIntegration bestReadsServiceIntegration;
 
     @Test
     public void when_asking_for_review_scores_then_we_should_be_able_to_read_the_result() {
         mockServerClient.when(request().withPath("/api/scores")
-                        .withHeader(CONTENT_TYPE, "application/json")
+                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                         .withBody(new JsonBody("""
                                 {"isbns" : [ "9780142424179", "9780765326355", "9780061120084" ]}
                                 """)))
                 .respond(response().withStatusCode(200)
-                        .withHeader(CONTENT_TYPE, "application/json; charset=utf-8")
+                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                         .withBody("""
                                 { "reviews": [
                                 {"isbn": "9780142424179", "score": 1},
@@ -43,7 +44,7 @@ class BestReadsIntegrationTest extends BaseIntegrationTest {
                                 ] }
                                 """));
 
-        var result = bestReadsIntegration.getScoresByIsbn(List.of("9780142424179", "9780765326355", "9780061120084"));
+        var result = bestReadsServiceIntegration.getScoresByIsbn(List.of("9780142424179", "9780765326355", "9780061120084"));
         assertThat(result).containsEntry("9780142424179", 1)
                 .containsEntry("9780765326355", 5)
                 .containsEntry("9780061120084", 0)

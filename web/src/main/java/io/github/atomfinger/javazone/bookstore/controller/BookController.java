@@ -20,8 +20,8 @@ public class BookController {
         this.service = service;
     }
 
-    private static BookResponse map(BookListItem bookWithOrderNumbers) {
-        var book = bookWithOrderNumbers.book();
+    private static BookResponse map(BookListItem bookListItem) {
+        var book = bookListItem.book();
         return new BookResponse(
                 book.getBookId(),
                 book.getTitle(),
@@ -31,8 +31,9 @@ public class BookController {
                 book.getPageNumbers(),
                 book.getPublishedDate(),
                 book.getGenre(),
-                bookWithOrderNumbers.orderNumber(),
-                bookWithOrderNumbers.isInStock()
+                bookListItem.orderNumber(),
+                bookListItem.isInStock(),
+                bookListItem.rating()
         );
     }
 
@@ -42,16 +43,8 @@ public class BookController {
         return service.listBooks().stream().map(BookController::map).toList();
     }
 
-    public record BookResponse(
-            Long bookId,
-            String title,
-            String description,
-            String isbn,
-            String authorName,
-            Integer pageNumbers,
-            Date publishedDate,
-            String genre,
-            Integer numberOfOrders,
-            boolean isInStock) {
+    public record BookResponse(Long bookId, String title, String description, String isbn, String authorName,
+                               Integer pageNumbers, Date publishedDate, String genre, Integer numberOfOrders,
+                               boolean isInStock, Integer rating) {
     }
 }
