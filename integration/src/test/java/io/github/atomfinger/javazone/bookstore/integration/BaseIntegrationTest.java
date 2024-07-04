@@ -14,15 +14,18 @@ import org.testcontainers.utility.DockerImageName;
 
 import java.util.concurrent.TimeUnit;
 
-@Testcontainers
 @SpringBootTest(classes = {TestApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public abstract class BaseIntegrationTest {
 
     public static final DockerImageName MOCKSERVER_IMAGE = DockerImageName.parse("mockserver/mockserver")
             .withTag("mockserver-" + MockServerClient.class.getPackage().getImplementationVersion());
 
-    @Container
-    public static MockServerContainer mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE);
+    public static MockServerContainer mockServerContainer;
+
+    static {
+        mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE);
+        mockServerContainer.start();
+    }
 
     public MockServerClient mockServerClient = new MockServerClient("localhost", mockServerContainer.getServerPort());
 
@@ -38,11 +41,5 @@ public abstract class BaseIntegrationTest {
     @BeforeEach
     public void setup() {
         mockServerClient.reset();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        mockServerClient.stop(true);
-        while (!mockServerClient.hasStopped(3,100L, TimeUnit.MILLISECONDS)){}
     }
 }

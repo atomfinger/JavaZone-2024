@@ -33,7 +33,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void letsTest() {
+    public void given_a_valid_list_of_isbns_then_we_should_get_a_list_back_with_number_of_orders() {
         var result = orderServiceIntegration.listOrdersForBooks(
                 List.of(
                         "9780142424179",

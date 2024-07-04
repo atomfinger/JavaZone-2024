@@ -1,6 +1,7 @@
 package io.github.atomfinger.javazone.bookstore.integration;
 
 import org.junit.jupiter.api.Test;
+import org.mockserver.model.JsonBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -27,10 +28,11 @@ class BestReadsIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void when_asking_for_review_scores_then_we_should_be_able_to_read_the_result() {
-        mockServerClient.when(request()
-                        .withPath("/api/scores")
+        mockServerClient.when(request().withPath("/api/scores")
                         .withHeader(CONTENT_TYPE, "application/json")
-                )
+                        .withBody(new JsonBody("""
+                                {"isbns" : [ "9780142424179", "9780765326355", "9780061120084" ]}
+                                """)))
                 .respond(response().withStatusCode(200)
                         .withHeader(CONTENT_TYPE, "application/json; charset=utf-8")
                         .withBody("""
@@ -40,18 +42,11 @@ class BestReadsIntegrationTest extends BaseIntegrationTest {
                                 {"isbn": "9780061120084", "score": 0}
                                 ] }
                                 """));
-        try {
-            var result = bestReadsIntegration.getScoresByIsbn(List.of("9780142424179", "9780765326355", "9780061120084"));
-            assertThat(result)
-                    .containsEntry("9780142424179", 1)
-                    .containsEntry("9780765326355", 5)
-                    .containsEntry("9780061120084", 0)
-                    .hasSize(3);
-        } finally {
-            var something = mockServerClient.retrieveRecordedRequests(request());
-            for (var x : something) {
-                System.out.println(x);
-            }
-        }
+
+        var result = bestReadsIntegration.getScoresByIsbn(List.of("9780142424179", "9780765326355", "9780061120084"));
+        assertThat(result).containsEntry("9780142424179", 1)
+                .containsEntry("9780765326355", 5)
+                .containsEntry("9780061120084", 0)
+                .hasSize(3);
     }
 }
