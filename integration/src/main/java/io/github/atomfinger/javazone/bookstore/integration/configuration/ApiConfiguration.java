@@ -1,23 +1,28 @@
 package io.github.atomfinger.javazone.bookstore.integration.configuration;
 
-import io.github.atomfinger.javazone.bookstore.orderservice.api.DefaultOrderServiceClient;
-import io.github.atomfinger.javazone.bookstore.orderservice.invoker.ApiClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "api")
 public class ApiConfiguration {
 
-    private String bookstoreEndpoint;
+    private String orderEndpoint;
+    private String inventoryEndpoint;
 
-    public String getBookstoreEndpoint() {
-        return bookstoreEndpoint;
+    public String getOrderEndpoint() {
+        return orderEndpoint;
     }
 
-    public void setBookstoreEndpoint(String bookstoreEndpoint) {
-        this.bookstoreEndpoint = bookstoreEndpoint;
+    public void setOrderEndpoint(String orderEndpoint) {
+        this.orderEndpoint = orderEndpoint;
+    }
+
+    public String getInventoryEndpoint() {
+        return inventoryEndpoint;
+    }
+
+    public void setInventoryEndpoint(String inventoryEndpoint) {
+        this.inventoryEndpoint = inventoryEndpoint;
     }
 }

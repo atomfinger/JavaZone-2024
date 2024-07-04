@@ -28,7 +28,7 @@ class OrderServiceIntegrationTest {
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("api.bookstore-endpoint", () -> "http://localhost:8080");
+        registry.add("api.order-endpoint", () -> "http://localhost:8080");
     }
 
     @Test
@@ -43,6 +43,7 @@ class OrderServiceIntegrationTest {
         assertThat(result)
                 .containsEntry("9780142424179", 100)
                 .containsEntry( "9780765326355", 42)
-                .containsEntry( "9780061120084", 0);
+                .containsEntry( "9780061120084", 0)
+                .hasSize(3);
     }
 }

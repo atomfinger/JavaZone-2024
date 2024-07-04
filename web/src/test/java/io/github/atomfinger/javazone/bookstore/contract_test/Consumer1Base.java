@@ -2,7 +2,7 @@ package io.github.atomfinger.javazone.bookstore.contract_test;
 
 import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
 import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService;
-import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService.BookWithOrderNumbers;
+import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService.BookListItem;
 import io.github.atomfinger.javazone.bookstore.controller.BookController;
 import io.restassured.config.EncoderConfig;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -22,7 +22,7 @@ public abstract class Consumer1Base {
     book.setTitle("Test");
     book.setDescription("More test");
     book.setAuthorName("John");
-    var bookWithOrderNums = new BookWithOrderNumbers(book, null);
+    var bookWithOrderNums = new BookListItem(book, null, true);
     var mockedBookService = Mockito.mock(BookService.class);
     Mockito.when(mockedBookService.listBooks()).thenReturn(List.of(bookWithOrderNums));
     controller = new BookController(mockedBookService);

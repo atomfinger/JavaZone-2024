@@ -11,4 +11,5 @@ spring:
 
 
 api:
-  bookstore-endpoint: https://api.bookstore.com/v1
+  order-endpoint: https://api.bookstore.com/order/api/v1
+  inventory-endpoint: https://api.bookstore.com/inventory/api/v1

@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: Inventory Service API
+  description: API to check the inventory of books based on ISBNs.
+  version: 1.0.0
+servers:
+  - url: https://api.example.com
+    description: Production server
+  - url: https://sandbox.api.example.com
+    description: Sandbox server for testing
+paths:
+  /inventory:
+    post:
+      summary: Get inventory for a list of ISBNs
+      description: Returns the number of books in inventory for each provided ISBN.
+      operationId: getInventory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isbns:
+                  type: array
+                  items:
+                    type: string
+                    pattern: "^(97(8|9))?\\d{9}(\\d|X)$"
+                  description: List of ISBNs to check inventory for.
+              required:
+                - isbns
+      responses:
+        '200':
+          description: A list of inventory counts for the provided ISBNs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        isbn:
+                          type: string
+                          pattern: "^(97(8|9))?\\d{9}(\\d|X)$"
+                          description: The ISBN of the book.
+                        count:
+                          type: integer
+                          description: Number of books in inventory for the ISBN.
+              example:
+                inventory:
+                  - isbn: "9780142424179"
+                    count: 5
+                  - isbn: "9780765326355"
+                    count: 2
+                  - isbn: "9780061120084"
+                    count: 0
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid ISBN format."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred."
+
+components:
+  schemas:
+    ISBNList:
+      type: array
+      items:
+        type: string
+        pattern: "^(97(8|9))?\\d{9}(\\d|X)$"
+      description: List of ISBNs to check inventory for.
+    InventoryResponse:
+      type: object
+      properties:
+        isbn:
+          type: string
+          pattern: "^(97(8|9))?\\d{9}(\\d|X)$"
+          description: The ISBN of the book.
+        count:
+          type: integer
+          description: Number of books in inventory for the ISBN.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string

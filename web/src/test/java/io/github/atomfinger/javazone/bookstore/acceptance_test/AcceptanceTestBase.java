@@ -46,7 +46,8 @@ public abstract class AcceptanceTestBase {
     registry.add("spring.datasource.username", postgresDB::getUsername);
     registry.add("spring.datasource.password", postgresDB::getPassword);
     registry.add("spring.flyway.cleanDisabled", () -> false);
-    registry.add("api.bookstore-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort());
+    registry.add("api.order-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort() + "/order");
+    registry.add("api.inventory-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort() + "/inventory");
   }
 
   @BeforeEach

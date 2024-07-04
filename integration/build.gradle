@@ -1,12 +1,18 @@
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+
 plugins {
     id "org.openapi.generator" version "7.5.0"
 }
 
 dependencies {
+    testImplementation project(':external_orderservice')
+
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
     implementation 'org.springframework.cloud:spring-cloud-contract-stub-runner'
     testImplementation 'org.assertj:assertj-core:3.26.0'
-    testImplementation project(':external_orderservice')
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:mockserver'
+    testImplementation 'org.mock-server:mockserver-client-java:5.15.0'
 }
 
 
@@ -24,25 +30,49 @@ jar {
     enabled = true
 }
 
-compileJava.dependsOn "openApiGenerate"
+String defaultNamespace = "io.github.atomfinger.javazone.bookstore"
 
-openApiGenerate {
+task generateOrderServiceClient(type: GenerateTask) {
     generatorName = "java"
-    inputSpec = "${projectDir}/src/main/resources/specs/orderservice.yml"
-    apiPackage = "io.github.atomfinger.javazone.bookstore.orderservice.api"
-    modelPackage = "io.github.atomfinger.javazone.bookstore.orderservice.model"
-    invokerPackage = "io.github.atomfinger.javazone.bookstore.orderservice.invoker"
-    groupId = "io.github.atomfinger.javazone.bookstore.orderservice"
+    inputSpec = "${projectDir}/src/main/resources/specs/orderservice.yml".toString()
+    outputDir = "${projectDir}/build/generated-sources/orderservice"
+    apiPackage = "${defaultNamespace}.orderservice.api"
+    modelPackage = "${defaultNamespace}.orderservice.model"
+    invokerPackage = "${defaultNamespace}.orderservice.invoker"
+    groupId = "${defaultNamespace}.orderservice"
     apiNameSuffix = "OrderServiceClient"
-    configOptions = [library     : 'resttemplate',
-                     useJakartaEe: "true",
-                     dateLibrary : "java8",]
+    configOptions = [
+            library     : 'resttemplate',
+            useJakartaEe: "true",
+            dateLibrary : "java8",
+            sourceFolder: 'src/main/java'
+    ]
 }
+
+task generateInventoryServiceClient(type: GenerateTask) {
+    generatorName = "java"
+    inputSpec = "${projectDir}/src/main/resources/specs/inventoryservice.yml".toString()
+    outputDir = "${projectDir}/build/generated-sources/inventoryservice"
+    apiPackage = "${defaultNamespace}.inventoryservice.api"
+    modelPackage = "${defaultNamespace}.inventoryservice.model"
+    invokerPackage = "${defaultNamespace}.inventoryservice.invoker"
+    groupId = "${defaultNamespace}.inventoryservice"
+    apiNameSuffix = "InventoryServiceClient"
+    configOptions = [
+            library     : 'resttemplate',
+            useJakartaEe: "true",
+            dateLibrary : "java8",
+            sourceFolder: 'src/main/java'
+    ]
+}
+
+compileJava.dependsOn generateOrderServiceClient, generateInventoryServiceClient
 
 sourceSets {
     main {
         java {
-            srcDir("${buildDir}/generate-resources/main/src/main/java")
+            srcDir "${buildDir}/generated-sources/orderservice/src/main/java"
+            srcDir "${buildDir}/generated-sources/inventoryservice/src/main/java"
         }
     }
 }
