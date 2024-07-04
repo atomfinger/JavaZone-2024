@@ -9,6 +9,7 @@ public class ApiConfiguration {
 
     private String orderEndpoint;
     private String inventoryEndpoint;
+    private String bestReadsEndpoint;
 
     public String getOrderEndpoint() {
         return orderEndpoint;
@@ -24,5 +25,13 @@ public class ApiConfiguration {
 
     public void setInventoryEndpoint(String inventoryEndpoint) {
         this.inventoryEndpoint = inventoryEndpoint;
+    }
+
+    public String getBestReadsEndpoint() {
+        return bestReadsEndpoint;
+    }
+
+    public void setBestReadsEndpoint(String bestReadsEndpoint) {
+        this.bestReadsEndpoint = bestReadsEndpoint;
     }
 }
