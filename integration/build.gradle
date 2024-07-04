@@ -13,6 +13,7 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:mockserver'
     testImplementation 'org.mock-server:mockserver-client-java:5.15.0'
+    testImplementation 'org.mock-server:mockserver-netty:5.15.0'
 }
 
 

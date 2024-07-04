@@ -1,5 +1,7 @@
-package io.github.atomfinger.javazone.bookstore.integration;
+package io.github.atomfinger.javazone.bookstore.integration.contract_tests;
 
+import io.github.atomfinger.javazone.bookstore.integration.OrderServiceIntegration;
+import io.github.atomfinger.javazone.bookstore.integration.TestApplication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
-    public void letsTest() {
+    public void given_a_valid_list_of_isbns_then_we_should_get_a_list_back_with_number_of_orders() {
         var result = orderServiceIntegration.listOrdersForBooks(
                 List.of(
                         "9780142424179",

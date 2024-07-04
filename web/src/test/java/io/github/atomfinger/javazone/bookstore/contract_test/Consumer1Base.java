@@ -22,7 +22,7 @@ public abstract class Consumer1Base {
     book.setTitle("Test");
     book.setDescription("More test");
     book.setAuthorName("John");
-    var bookWithOrderNums = new BookListItem(book, null, true);
+    var bookWithOrderNums = new BookListItem(book, null, true, 6);
     var mockedBookService = Mockito.mock(BookService.class);
     Mockito.when(mockedBookService.listBooks()).thenReturn(List.of(bookWithOrderNums));
     controller = new BookController(mockedBookService);
