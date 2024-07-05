@@ -1,0 +1,19 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb
+    username: root
+    password: root
+  flyway:
+    enabled: true
+    locations: classpath:db/migrations
+    baseline-on-migrate: true
+    out-of-order: true
+
+api:
+  order-endpoint: https://api.bookstore.com/order
+  inventory-endpoint: https://api.bookstore.com/inventory
+  best-reads-endpoint: https://bestreads.com
