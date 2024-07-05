@@ -42,8 +42,6 @@ public abstract class AcceptanceTestBase {
     public BookRepository bookRepository;
     @Autowired
     private Flyway flyway;
-    @Autowired
-    private KafkaTemplate<String, String> template;
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
