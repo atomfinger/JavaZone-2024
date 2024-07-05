@@ -9,4 +9,5 @@ dependencies {
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.flywaydb:flyway-core'
     testImplementation 'com.approvaltests:approvaltests:24.2.0'
+    testImplementation 'org.awaitility:awaitility:4.2.1'
 }
