@@ -1,7 +1,7 @@
 rootProject.name = 'bookstore'
 include 'web'
+include 'kafka'
 include 'persistence'
 include 'service'
 include 'integration'
 include 'external_orderservice'
-
