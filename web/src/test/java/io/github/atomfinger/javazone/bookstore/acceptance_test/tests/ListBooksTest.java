@@ -4,6 +4,7 @@ import io.github.atomfinger.javazone.bookstore.acceptance_test.AcceptanceTestBas
 import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
 import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
 import org.approvaltests.JsonApprovals;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockserver.model.HttpResponse;
@@ -23,15 +24,7 @@ public class ListBooksTest extends AcceptanceTestBase {
 
     @BeforeEach
     public void setup() {
-        var book = new Book();
-        book.setTitle("Effective Java");
-        book.setDescription("A comprehensive guide to programming in Java.");
-        book.setIsbn("9780134685991");
-        book.setAuthorName("Joshua Bloch");
-        book.setPageNumbers(416);
-        book.setPublishedDate(new GregorianCalendar(2018, Calendar.JANUARY, 6).getTime());
-        book.setGenre("Programming");
-        bookRepository.save(book);
+        bookRepository.save(getBook());
         createExpectation("order", """
                 { "data": [{"isbn": {"code":"9780134685991"}, "order_count": 3}] }
                 """);
@@ -58,5 +51,17 @@ public class ListBooksTest extends AcceptanceTestBase {
                 .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                 .withStatusCode(200)
                 .withBody(body);
+    }
+
+    private static Book getBook() {
+        var book = new Book();
+        book.setTitle("Effective Java");
+        book.setDescription("A comprehensive guide to programming in Java.");
+        book.setIsbn("9780134685991");
+        book.setAuthorName("Joshua Bloch");
+        book.setPageNumbers(416);
+        book.setPublishedDate(new GregorianCalendar(2018, Calendar.JANUARY, 6).getTime());
+        book.setGenre("Programming");
+        return book;
     }
 }
