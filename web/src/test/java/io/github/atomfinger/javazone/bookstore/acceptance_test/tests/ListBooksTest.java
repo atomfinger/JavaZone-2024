@@ -4,7 +4,6 @@ import io.github.atomfinger.javazone.bookstore.acceptance_test.AcceptanceTestBas
 import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
 import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
 import org.approvaltests.JsonApprovals;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockserver.model.HttpResponse;

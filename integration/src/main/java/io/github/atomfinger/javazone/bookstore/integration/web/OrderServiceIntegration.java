@@ -1,4 +1,4 @@
-package io.github.atomfinger.javazone.bookstore.integration;
+package io.github.atomfinger.javazone.bookstore.integration.web;
 
 import io.github.atomfinger.javazone.bookstore.orderservice.api.DefaultOrderServiceClient;
 import io.github.atomfinger.javazone.bookstore.orderservice.model.BookOrder;

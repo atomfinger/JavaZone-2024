@@ -1,4 +1,4 @@
-package io.github.atomfinger.javazone.bookstore.integration;
+package io.github.atomfinger.javazone.bookstore.integration.web;
 
 import io.github.atomfinger.javazone.bookstore.inventoryservice.api.DefaultInventoryServiceClient;
 import io.github.atomfinger.javazone.bookstore.inventoryservice.model.GetInventory200ResponseInventoryInner;

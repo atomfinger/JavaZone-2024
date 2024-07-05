@@ -1,5 +1,6 @@
 package io.github.atomfinger.javazone.bookstore.integration;
 
+import io.github.atomfinger.javazone.bookstore.integration.web.BestReadsServiceIntegration;
 import org.junit.jupiter.api.Test;
 import org.mockserver.model.JsonBody;
 import org.springframework.beans.factory.annotation.Autowired;

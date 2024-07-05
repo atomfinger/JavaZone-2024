@@ -1,4 +1,4 @@
-package io.github.atomfinger.javazone.bookstore.integration;
+package io.github.atomfinger.javazone.bookstore.integration.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

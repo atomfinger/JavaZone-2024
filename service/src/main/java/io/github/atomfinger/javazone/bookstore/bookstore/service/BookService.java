@@ -2,9 +2,9 @@ package io.github.atomfinger.javazone.bookstore.bookstore.service;
 
 import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
 import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
-import io.github.atomfinger.javazone.bookstore.integration.BestReadsServiceIntegration;
-import io.github.atomfinger.javazone.bookstore.integration.InventoryServiceIntegration;
-import io.github.atomfinger.javazone.bookstore.integration.OrderServiceIntegration;
+import io.github.atomfinger.javazone.bookstore.integration.web.BestReadsServiceIntegration;
+import io.github.atomfinger.javazone.bookstore.integration.web.InventoryServiceIntegration;
+import io.github.atomfinger.javazone.bookstore.integration.web.OrderServiceIntegration;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

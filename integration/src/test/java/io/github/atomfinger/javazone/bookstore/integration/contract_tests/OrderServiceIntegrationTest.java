@@ -1,6 +1,6 @@
 package io.github.atomfinger.javazone.bookstore.integration.contract_tests;
 
-import io.github.atomfinger.javazone.bookstore.integration.OrderServiceIntegration;
+import io.github.atomfinger.javazone.bookstore.integration.web.OrderServiceIntegration;
 import io.github.atomfinger.javazone.bookstore.integration.TestApplication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +30,7 @@ class OrderServiceIntegrationTest {
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
         registry.add("api.order-endpoint", () -> "http://localhost:8080");
+        registry.add("spring.kafka.bootstrap-servers", () -> "http://localhost:1234");
     }
 
     @Test
