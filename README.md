@@ -11,6 +11,28 @@
 - Web: Contains the web API
 - Service: Contains "Domain logic" and ties the system together
 - Persistence: Contains everything related to databases, including database entities
+- Integration: The code related to integrating with other web services
+- External_orderservice: Would normally not be here. Just exists to generate contract test stubs.
+
+#### Overall architecture
+
+```mermaid
+flowchart TD
+    A["Frontend"]
+	A ---> n2["BookService"]
+	n2
+	n2 ---> n1[("Database")]
+	n2 --- n3["BestReads"]
+	n2 --- n4["InventoryService"]
+	n2 --- n5["OrderService"]
+```
+
+In this fictional system we have multiple dependencies:
+
+- BookService: This service :)
+- InventoryService: Responsible to keep track of inventory - I.e. whether we have a book ready for sale or whether we need to order new copies.
+- OrderService: Keeps track of the book orders.
+- Database: The BookService's SQL database
 
 #### Test related tools used in the project
 
