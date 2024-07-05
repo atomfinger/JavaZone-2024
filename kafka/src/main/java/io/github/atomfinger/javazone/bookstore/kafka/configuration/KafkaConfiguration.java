@@ -42,7 +42,7 @@ public class KafkaConfiguration {
     public ConsumerFactory<String, AddBookMessage> addBookConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "greeting");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "BookstoreService");
         return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(AddBookMessage.class));
     }
 
@@ -52,4 +52,14 @@ public class KafkaConfiguration {
         factory.setConsumerFactory(addBookConsumerFactory());
         return factory;
     }
+
+    @Bean
+    public ConsumerFactory<String, Object> multiTypeConsumerFactory() {
+        HashMap<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(props);
+    }
+
 }

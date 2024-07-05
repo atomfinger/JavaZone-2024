@@ -7,4 +7,6 @@ dependencies {
     testImplementation "org.testcontainers:kafka"
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.flywaydb:flyway-core'
+    testImplementation 'com.approvaltests:approvaltests:24.2.0'
 }
