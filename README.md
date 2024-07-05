@@ -32,6 +32,7 @@ In this fictional system we have multiple dependencies:
 - BookService: This service :)
 - InventoryService: Responsible to keep track of inventory - I.e. whether we have a book ready for sale or whether we need to order new copies.
 - OrderService: Keeps track of the book orders.
+- BestReads: A fictional third-party service that has an API to provide review scores.
 - Database: The BookService's SQL database
 
 #### Test related tools used in the project
