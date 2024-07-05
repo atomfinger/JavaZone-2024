@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 
 import java.util.List;
 
-public abstract class Consumer1Base {
+public abstract class FrontendContractTestBase {
 
   BookController controller;
 

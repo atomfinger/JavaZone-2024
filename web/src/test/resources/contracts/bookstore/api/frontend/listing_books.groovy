@@ -1,4 +1,4 @@
-package contracts.bookstore.api.consumer1
+package contracts.bookstore.api.frontend
 
 import org.springframework.cloud.contract.spec.Contract
 

@@ -27,7 +27,7 @@ contracts {
     contractsDslDir = file("src/test/resources/contracts")
     testFramework = "JUNIT5"
     baseClassMappings {
-        baseClassMapping(".*consumer1.*", "io.github.atomfinger.javazone.bookstore.contract_test.Consumer1Base")
+        baseClassMapping(".*frontend.*", "io.github.atomfinger.javazone.bookstore.contract_test.FrontendContractTestBase")
     }
 }
 
