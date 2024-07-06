@@ -1,4 +1,4 @@
-package io.github.atomfinger.javazone.bookstore.integration.kafka;
+package io.github.atomfinger.javazone.bookstore.kafka.acceptance_test.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.CountDownLatch;
 
 @Component
-public class BookCreatedTestConsumer {
+public class KafkaStringConsumer {
 
     private CountDownLatch latch = new CountDownLatch(1);
     private String payload;

@@ -48,7 +48,6 @@ public abstract class AcceptanceTestBase {
         registry.add("api.inventory-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort() + "/inventory");
         registry.add("api.best-reads-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort() + "/best-reads");
         registry.add("spring.kafka.bootstrap-servers", () -> "localhost:1234");
-
     }
 
     @BeforeEach

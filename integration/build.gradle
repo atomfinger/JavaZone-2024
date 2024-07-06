@@ -7,8 +7,8 @@ plugins {
 dependencies {
     testImplementation project(':external_orderservice')
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
-    implementation 'org.springframework.cloud:spring-cloud-contract-stub-runner'
     implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.cloud:spring-cloud-contract-stub-runner'
     testImplementation "org.testcontainers:kafka"
     testImplementation 'org.awaitility:awaitility:4.2.1'
     testImplementation 'org.assertj:assertj-core:3.26.0'

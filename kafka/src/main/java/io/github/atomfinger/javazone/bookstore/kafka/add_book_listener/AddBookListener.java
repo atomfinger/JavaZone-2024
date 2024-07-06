@@ -1,20 +1,20 @@
 package io.github.atomfinger.javazone.bookstore.kafka.add_book_listener;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
+import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AddBookListener {
 
-    private final BookRepository bookRepository;
+    private final BookService bookService;
 
-    public AddBookListener(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public AddBookListener(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @KafkaListener(groupId = "BookstoreService", topics = "bookstore.cmd.add-book.1", containerFactory = "addBookKafkaListenerContainerFactory")
     public void listen(AddBookMessage message) {
-        bookRepository.save(message.toBook());
+        bookService.addBook(message.toBook());
     }
 }
