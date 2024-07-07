@@ -1,9 +1,8 @@
 [![Main build and test](https://github.com/atomfinger/JavaZone-2024/actions/workflows/gradle.yml/badge.svg)](https://github.com/atomfinger/JavaZone-2024/actions/workflows/gradle.yml)
 
-## JavaZone Presentation Project - 2024
+# JavaZone Presentation Project - 2024
 
-### _Test more and better with less friction!_
-___
+_Test more and better with less friction!_
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=821554819)
 
