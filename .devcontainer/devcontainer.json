@@ -1,0 +1,26 @@
+{
+  "name": "BookStore",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "mounts": [],
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": "false",
+      "installGradle": "true"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2":{}
+  },
+  "forwardPorts": [2222, 8000],
+
+  "customizations": {
+    "vscode": {
+      "extensions":[
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-gradle",
+        "github.vscode-github-actions",
+        "bierner.markdown-mermaid",
+        "davidanson.vscode-markdownlint"
+      ]
+    }
+  }
+}
