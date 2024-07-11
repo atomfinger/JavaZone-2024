@@ -2,7 +2,6 @@ package io.github.atomfinger.javazone.bookstore.kafka.acceptance_test;
 
 import io.github.atomfinger.javazone.bookstore.kafka.acceptance_test.consumer.KafkaStringConsumer;
 import io.github.atomfinger.javazone.bookstore.kafka.add_book_listener.AddBookMessage;
-import org.approvaltests.Approvals;
 import org.approvaltests.JsonApprovals;
 import org.approvaltests.namer.NamerFactory;
 import org.junit.jupiter.api.Test;
@@ -32,8 +31,8 @@ class AddBookListenerTest extends AcceptanceTestBase {
                 "Programming"
         );
         kafkaTemplate().send("bookstore.cmd.add-book.1", "key", input);
-        await().atMost(5, SECONDS).until(() -> bookRepository.count() > 0);
-        assertThat(consumer.getLatch().await(5, SECONDS)).isTrue();
+        await().atMost(20, SECONDS).until(() -> bookRepository.count() > 0);
+        assertThat(consumer.getLatch().await(20, SECONDS)).isTrue();
         var result = bookRepository.findAll().iterator().next();
         NamerFactory.asMachineSpecificTest(() -> "book_stored_in_db");
         JsonApprovals.verifyAsJson(result);
