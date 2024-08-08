@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.*;
 
@@ -53,8 +54,11 @@ class BookServiceTest {
     @BeforeEach
     void setUp() {
         book = new Book();
-        book.setBookId(1L);
-        book.setIsbn("1234567890");
+        book.setIsbn("9780134685991");
+        book.setPageNumbers(320);
+        book.setAuthorName("John Doe");
+        book.setGenre("Programming");
+        book.setTitle("Effective Java");
     }
 
     @Test
@@ -94,5 +98,60 @@ class BookServiceTest {
         var result = bookService.listBooks();
 
         assertThat(result).isEmpty();
+    }
+
+    @Test
+    void testNullBook() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bookService.addBook(null))
+                .withMessage("Book cannot be null.");
+    }
+
+    @Test
+    void testInvalidISBN() {
+        book.setIsbn("");
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bookService.addBook(book))
+                .withMessage("Invalid ISBN. It must be a 13-digit number.");
+    }
+
+    @Test
+    void testInvalidPageNumbers() {
+        book.setPageNumbers(-1);
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bookService.addBook(book))
+                .withMessage("Invalid page numbers. It must be a positive integer.");
+    }
+
+    @Test
+    void testEmptyAuthorName() {
+        book.setAuthorName("");
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bookService.addBook(book))
+                .withMessage("Invalid author name. It cannot be empty.");
+    }
+
+    @Test
+    void testAuthorNameWithoutLastName() {
+        book.setAuthorName("John");
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bookService.addBook(book))
+                .withMessage("Invalid author name. It must include at least a first and last name.");
+    }
+
+    @Test
+    void testEmptyGenre() {
+        book.setGenre("");
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bookService.addBook(book))
+                .withMessage("Invalid genre. It cannot be empty.");
+    }
+
+    @Test
+    void testEmptyTitle() {
+        book.setTitle("");
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bookService.addBook(book))
+                .withMessage("Invalid title. It cannot be empty.");
     }
 }
