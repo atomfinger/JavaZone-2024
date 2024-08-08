@@ -4,6 +4,11 @@ import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Bo
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
+
+    Optional<Book> findByIsbn(String isbn);
 }

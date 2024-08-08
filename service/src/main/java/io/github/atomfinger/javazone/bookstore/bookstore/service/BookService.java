@@ -38,6 +38,9 @@ public class BookService {
     @Transactional
     public void addBook(Book book) {
         validateBook(book);
+        if (repository.findByIsbn(book.getIsbn()).isPresent()) {
+            throw new IllegalArgumentException("Book already exists");
+        }
         repository.save(book);
         bookCreatedMessageProducer.notifyBookCreated(book.getBookId(), book.getIsbn());
     }

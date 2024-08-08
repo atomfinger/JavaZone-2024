@@ -26,6 +26,12 @@ public class BookRepositoryTest extends BaseDatabaseIntegrationTest {
         });
     }
 
+    @Test
+    public void verify_that_we_can_read_book_by_isbn() {
+        bookRepository.save(getBook());
+        assertThat(bookRepository.findByIsbn("9780134685991")).isNotEmpty();
+    }
+
     private Book getBook() {
         var book = new Book();
         book.setTitle("Effective Java");
