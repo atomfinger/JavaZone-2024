@@ -1,8 +1,8 @@
 package io.github.atomfinger.javazone.bookstore.contract_test;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
-import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService;
-import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService.BookListItem;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazone.bookstore.service.BookService;
+import io.github.atomfinger.javazone.bookstore.service.BookService.BookListItem;
 import io.github.atomfinger.javazone.bookstore.controller.BookController;
 import io.restassured.config.EncoderConfig;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;

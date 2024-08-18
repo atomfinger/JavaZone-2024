@@ -1,6 +1,6 @@
-package io.github.atomfinger.javazone.bookstore.bookstore.persistence.configuration;
+package io.github.atomfinger.javazone.bookstore.persistence.configuration;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.BaseDatabaseIntegrationTest;
+import io.github.atomfinger.javazone.bookstore.persistence.BaseDatabaseIntegrationTest;
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.test.context.TestConfiguration;

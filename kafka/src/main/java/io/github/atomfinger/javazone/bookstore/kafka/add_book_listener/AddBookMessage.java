@@ -1,6 +1,6 @@
 package io.github.atomfinger.javazone.bookstore.kafka.add_book_listener;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
 
 import java.util.Date;
 

@@ -1,7 +1,9 @@
-package io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository;
+package io.github.atomfinger.javazone.bookstore.persistence.repository;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.BaseDatabaseIntegrationTest;
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazone.bookstore.persistence.BaseDatabaseIntegrationTest;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazonee.bookstore.persistence.repository.BookRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +22,7 @@ public class BookRepositoryTest extends BaseDatabaseIntegrationTest {
         bookRepository.save(getBook());
         var book = bookRepository.findAll().iterator().next();
         assertThat(book).satisfies(actual -> {
-            assertThat(actual).hasNoNullFieldsOrProperties(); //Verifies that we test all the fields in the class
+            assertThat(actual).hasNoNullFieldsOrProperties(); // Verifies that we test all the fields in the class
             assertThat(actual).usingRecursiveComparison().ignoringFields("bookId").isEqualTo(getBook());
             assertThat(book.getBookId()).isNotNull();
         });

@@ -1,7 +1,7 @@
-package io.github.atomfinger.javazone.bookstore.bookstore.service;
+package io.github.atomfinger.javazone.bookstore.service;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
 import io.github.atomfinger.javazone.bookstore.integration.kafka.BookCreatedMessageProducer;
 import io.github.atomfinger.javazone.bookstore.integration.web.BestReadsServiceIntegration;
 import io.github.atomfinger.javazone.bookstore.integration.web.InventoryServiceIntegration;

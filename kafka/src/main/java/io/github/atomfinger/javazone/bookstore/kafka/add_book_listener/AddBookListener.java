@@ -1,6 +1,6 @@
 package io.github.atomfinger.javazone.bookstore.kafka.add_book_listener;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService;
+import io.github.atomfinger.javazone.bookstore.service.BookService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 

@@ -1,11 +1,11 @@
-package io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository;
+package io.github.atomfinger.javazonee.bookstore.persistence.repository;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
-import java.util.Optional;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
 
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
