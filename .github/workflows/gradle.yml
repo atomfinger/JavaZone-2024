@@ -1,32 +1,30 @@
-
-name: Main build and test 
+name: Main build and test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
-    - name: Build with Gradle Wrapper
-      run: ./gradlew build -x test
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build -x test --info
 
-    - name: Run tests
-      run: ./gradlew test --info
+      - name: Run tests
+        run: ./gradlew test --info
