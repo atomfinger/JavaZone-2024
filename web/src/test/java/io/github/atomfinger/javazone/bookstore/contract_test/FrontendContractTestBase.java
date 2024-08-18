@@ -14,20 +14,28 @@ import java.util.List;
 
 public abstract class FrontendContractTestBase {
 
-  BookController controller;
+    BookController controller;
 
-  @BeforeEach
-  public void setup() {
-    var book = new Book();
-    book.setTitle("Test");
-    book.setDescription("More test");
-    book.setAuthorName("John");
-    var bookWithOrderNums = new BookListItem(book, null, true, 6);
-    var mockedBookService = Mockito.mock(BookService.class);
-    Mockito.when(mockedBookService.listBooks()).thenReturn(List.of(bookWithOrderNums));
-    controller = new BookController(mockedBookService);
-    var encoderConfig = new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false);
-    RestAssuredMockMvc.config = new RestAssuredMockMvcConfig().encoderConfig(encoderConfig);
-    RestAssuredMockMvc.standaloneSetup(this.controller);
-  }
+    @BeforeEach
+    public void setup() {
+        controller = new BookController(setupMockService());
+        setupMockMvc();
+    }
+
+    private void setupMockMvc() {
+        var encoderConfig = new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false);
+        RestAssuredMockMvc.config = new RestAssuredMockMvcConfig().encoderConfig(encoderConfig);
+        RestAssuredMockMvc.standaloneSetup(this.controller);
+    }
+
+    private BookService setupMockService() {
+        var book = new Book();
+        book.setTitle("Test");
+        book.setDescription("More test");
+        book.setAuthorName("John");
+        var bookWithOrderNums = new BookListItem(book, null, true, 6);
+        var mockedBookService = Mockito.mock(BookService.class);
+        Mockito.when(mockedBookService.listBooks()).thenReturn(List.of(bookWithOrderNums));
+        return mockedBookService;
+    }
 }

@@ -20,7 +20,22 @@ class AddBookListenerTest extends AcceptanceTestBase {
 
     @Test
     public void given_that_we_add_a_new_book_then_new_book_should_be_added_to_db() throws InterruptedException {
-        var input = new AddBookMessage(
+        sendMessage();
+        var result = bookRepository.findAll().iterator().next();
+        NamerFactory.asMachineSpecificTest(() -> "book_stored_in_db");
+        JsonApprovals.verifyAsJson(result);
+        NamerFactory.asMachineSpecificTest(() -> "message_sent_to_kafka");
+        JsonApprovals.verifyJson(consumer.getPayload());
+    }
+
+    private void sendMessage() throws InterruptedException {
+        kafkaTemplate().send("bookstore.cmd.add-book.1", "key", createMessage());
+        await().atMost(20, SECONDS).until(() -> bookRepository.count() > 0);
+        assertThat(consumer.getLatch().await(20, SECONDS)).isTrue();
+    }
+
+    private static AddBookMessage createMessage() {
+        return new AddBookMessage(
                 1L,
                 "Effective Java",
                 "A comprehensive guide to programming in Java.",
@@ -28,15 +43,7 @@ class AddBookListenerTest extends AcceptanceTestBase {
                 "Joshua Bloch",
                 416,
                 Date.valueOf("2018-01-06"),
-                "Programming"
-        );
-        kafkaTemplate().send("bookstore.cmd.add-book.1", "key", input);
-        await().atMost(20, SECONDS).until(() -> bookRepository.count() > 0);
-        assertThat(consumer.getLatch().await(20, SECONDS)).isTrue();
-        var result = bookRepository.findAll().iterator().next();
-        NamerFactory.asMachineSpecificTest(() -> "book_stored_in_db");
-        JsonApprovals.verifyAsJson(result);
-        NamerFactory.asMachineSpecificTest(() -> "message_sent_to_kafka");
-        JsonApprovals.verifyJson(consumer.getPayload());
+                "Programming");
+
     }
 }

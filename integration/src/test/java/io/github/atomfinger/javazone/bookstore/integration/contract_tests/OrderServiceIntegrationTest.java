@@ -17,11 +17,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes = {TestApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ExtendWith({SpringExtension.class, StubRunnerExtension.class})
-@AutoConfigureStubRunner(
-        stubsMode = StubRunnerProperties.StubsMode.LOCAL,
-        ids = "bookstore:external_orderservice:unspecified:stubs:8080")
+@SpringBootTest(classes = { TestApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@ExtendWith({ SpringExtension.class, StubRunnerExtension.class })
+@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.LOCAL, ids = "bookstore:external_orderservice:unspecified:stubs:8080")
 class OrderServiceIntegrationTest {
 
     @Autowired
@@ -39,13 +37,11 @@ class OrderServiceIntegrationTest {
                 List.of(
                         "9780142424179",
                         "9780765326355",
-                        "9780061120084"
-                )
-        );
+                        "9780061120084"));
         assertThat(result)
                 .containsEntry("9780142424179", 100)
-                .containsEntry( "9780765326355", 42)
-                .containsEntry( "9780061120084", 0)
+                .containsEntry("9780765326355", 42)
+                .containsEntry("9780061120084", 0)
                 .hasSize(3);
     }
 }
