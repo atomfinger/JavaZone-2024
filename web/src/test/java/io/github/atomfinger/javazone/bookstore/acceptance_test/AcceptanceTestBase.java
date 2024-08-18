@@ -45,8 +45,10 @@ public abstract class AcceptanceTestBase {
         registry.add("spring.datasource.password", postgresDB::getPassword);
         registry.add("spring.flyway.cleanDisabled", () -> false);
         registry.add("api.order-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort() + "/order");
-        registry.add("api.inventory-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort() + "/inventory");
-        registry.add("api.best-reads-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort() + "/best-reads");
+        registry.add("api.inventory-endpoint",
+                () -> "http://localhost:" + mockServerContainer.getServerPort() + "/inventory");
+        registry.add("api.best-reads-endpoint",
+                () -> "http://localhost:" + mockServerContainer.getServerPort() + "/best-reads");
         registry.add("spring.kafka.bootstrap-servers", () -> "localhost:1234");
     }
 

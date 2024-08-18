@@ -1,7 +1,7 @@
-package io.github.atomfinger.javazone.bookstore.bookstore.service;
+package io.github.atomfinger.javazone.bookstore.service;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
 import io.github.atomfinger.javazone.bookstore.integration.kafka.BookCreatedMessageProducer;
 import io.github.atomfinger.javazone.bookstore.integration.web.BestReadsServiceIntegration;
 import io.github.atomfinger.javazone.bookstore.integration.web.InventoryServiceIntegration;
@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Fyi: If your service classes looks like this, then you might want to reconsider your chosen architecture.
+ * Fyi: If your service classes looks like this, then you might want to
+ * reconsider your chosen architecture.
  */
 @Service
 public class BookService {
@@ -24,10 +25,9 @@ public class BookService {
     private final BookCreatedMessageProducer bookCreatedMessageProducer;
 
     public BookService(BookRepository repository, OrderServiceIntegration orderServiceIntegration,
-                       InventoryServiceIntegration inventoryServiceIntegration,
-                       BestReadsServiceIntegration bestReadsServiceIntegration,
-                       BookCreatedMessageProducer bookCreatedMessageProducer
-    ) {
+            InventoryServiceIntegration inventoryServiceIntegration,
+            BestReadsServiceIntegration bestReadsServiceIntegration,
+            BookCreatedMessageProducer bookCreatedMessageProducer) {
         this.repository = repository;
         this.orderServiceIntegration = orderServiceIntegration;
         this.inventoryServiceIntegration = inventoryServiceIntegration;
@@ -55,8 +55,7 @@ public class BookService {
                 book,
                 ordersByIsbn.get(book.getIsbn()),
                 inventoryByIsbn.get(book.getIsbn()) > 0,
-                ratingByIsbn.get(book.getIsbn())
-        )).toList();
+                ratingByIsbn.get(book.getIsbn()))).toList();
     }
 
     public record BookListItem(Book book, Integer orderNumber, boolean isInStock, Integer rating) {

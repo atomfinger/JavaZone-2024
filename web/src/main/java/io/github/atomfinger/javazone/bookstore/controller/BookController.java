@@ -1,7 +1,7 @@
 package io.github.atomfinger.javazone.bookstore.controller;
 
-import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService;
-import io.github.atomfinger.javazone.bookstore.bookstore.service.BookService.BookListItem;
+import io.github.atomfinger.javazone.bookstore.service.BookService;
+import io.github.atomfinger.javazone.bookstore.service.BookService.BookListItem;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

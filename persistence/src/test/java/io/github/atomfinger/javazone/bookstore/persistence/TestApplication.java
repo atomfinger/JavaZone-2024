@@ -1,4 +1,4 @@
-package io.github.atomfinger.javazone.bookstore.bookstore.persistence;
+package io.github.atomfinger.javazone.bookstore.persistence;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

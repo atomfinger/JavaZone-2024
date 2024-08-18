@@ -1,8 +1,8 @@
 package io.github.atomfinger.javazone.bookstore.acceptance_test.tests;
 
 import io.github.atomfinger.javazone.bookstore.acceptance_test.AcceptanceTestBase;
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities.Book;
-import io.github.atomfinger.javazone.bookstore.bookstore.persistence.repository.BookRepository;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
+import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
 import org.approvaltests.JsonApprovals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

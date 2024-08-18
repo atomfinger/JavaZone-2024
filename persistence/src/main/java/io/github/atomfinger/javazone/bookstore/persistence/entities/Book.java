@@ -1,4 +1,4 @@
-package io.github.atomfinger.javazone.bookstore.bookstore.persistence.entities;
+package io.github.atomfinger.javazone.bookstore.persistence.entities;
 
 import jakarta.persistence.*;
 
