@@ -21,8 +21,8 @@ import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
-import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
 import io.github.atomfinger.javazone.bookstore.kafka.add_book_listener.AddBookMessage;
+import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
 
 @SuppressWarnings("resource")
 @SpringBootTest(webEnvironment = NONE)

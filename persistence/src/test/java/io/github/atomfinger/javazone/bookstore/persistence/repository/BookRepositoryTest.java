@@ -2,7 +2,7 @@ package io.github.atomfinger.javazone.bookstore.persistence.repository;
 
 import io.github.atomfinger.javazone.bookstore.persistence.BaseDatabaseIntegrationTest;
 import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
-import io.github.atomfinger.javazonee.bookstore.persistence.repository.BookRepository;
+import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
