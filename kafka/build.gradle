@@ -9,6 +9,6 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.flywaydb:flyway-core'
-    testImplementation 'com.approvaltests:approvaltests:24.3.0'
+    testImplementation 'com.approvaltests:approvaltests:24.4.0'
     testImplementation 'org.awaitility:awaitility:4.2.2'
 }
