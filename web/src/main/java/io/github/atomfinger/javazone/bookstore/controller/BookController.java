@@ -1,14 +1,15 @@
 package io.github.atomfinger.javazone.bookstore.controller;
 
-import io.github.atomfinger.javazone.bookstore.service.BookService;
-import io.github.atomfinger.javazone.bookstore.service.BookService.BookListItem;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.List;
+import io.github.atomfinger.javazone.bookstore.service.BookService;
+import io.github.atomfinger.javazone.bookstore.service.BookService.BookListItem;
 
 @RestController
 @RequestMapping("api/books")
@@ -33,8 +34,7 @@ public class BookController {
                 book.getGenre(),
                 bookListItem.orderNumber(),
                 bookListItem.isInStock(),
-                bookListItem.rating()
-        );
+                bookListItem.rating());
     }
 
     @GetMapping
@@ -44,7 +44,7 @@ public class BookController {
     }
 
     public record BookResponse(Long bookId, String title, String description, String isbn, String authorName,
-                               Integer pageNumbers, Date publishedDate, String genre, Integer numberOfOrders,
-                               boolean isInStock, Integer rating) {
+            Integer pageNumbers, Date publishedDate, String genre, Integer numberOfOrders,
+            boolean isInStock, Integer rating) {
     }
 }

@@ -1,16 +1,15 @@
 package io.github.atomfinger.javazone.bookstore.persistence.repository;
 
-import io.github.atomfinger.javazone.bookstore.persistence.BaseDatabaseIntegrationTest;
-import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
-import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import io.github.atomfinger.javazone.bookstore.persistence.BaseDatabaseIntegrationTest;
+import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
 
 public class BookRepositoryTest extends BaseDatabaseIntegrationTest {
 
