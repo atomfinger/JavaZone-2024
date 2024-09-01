@@ -2,6 +2,7 @@ package io.github.atomfinger.javazone.bookstore.service;
 
 import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
 import io.github.atomfinger.javazone.bookstore.persistence.repository.BookRepository;
+import io.github.atomfinger.javazone.bookstore.service.BookService;
 import io.github.atomfinger.javazone.bookstore.integration.kafka.BookCreatedMessageProducer;
 import io.github.atomfinger.javazone.bookstore.integration.web.BestReadsServiceIntegration;
 import io.github.atomfinger.javazone.bookstore.integration.web.InventoryServiceIntegration;
@@ -23,9 +24,11 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.*;
 
 /**
- * These tests represent the problems of not separating application code and business logic.
+ * These tests represent the problems of not separating application code and
+ * business logic.
  * <p>
- * Notice how much effort that goes into mocking - and how much that couples the test to the implementation of a given
+ * Notice how much effort that goes into mocking - and how much that couples the
+ * test to the implementation of a given
  * feature.
  */
 @ExtendWith(MockitoExtension.class)
