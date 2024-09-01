@@ -31,7 +31,7 @@ public class KafkaConfiguration {
         props.put(ConsumerConfig.MAX_PARTITION_FETCH_BYTES_CONFIG, "20971520");
         props.put(ConsumerConfig.FETCH_MAX_BYTES_CONFIG, "20971520");
         return new DefaultKafkaConsumerFactory<>(props);
-   }
+    }
 
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(String groupId) {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
@@ -43,18 +43,19 @@ public class KafkaConfiguration {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "BookstoreService");
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(AddBookMessage.class));
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(),
+                new JsonDeserializer<>(AddBookMessage.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, AddBookMessage> addBookKafkaListenerContainerFactory() {
+    ConcurrentKafkaListenerContainerFactory<String, AddBookMessage> addBookKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, AddBookMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(addBookConsumerFactory());
         return factory;
     }
 
     @Bean
-    public ConsumerFactory<String, Object> multiTypeConsumerFactory() {
+    ConsumerFactory<String, Object> multiTypeConsumerFactory() {
         HashMap<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);

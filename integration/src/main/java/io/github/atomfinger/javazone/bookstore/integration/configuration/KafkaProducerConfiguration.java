@@ -21,7 +21,7 @@ public class KafkaProducerConfiguration {
     private String bootstrapAddress;
 
     @Bean
-    public ProducerFactory<String, BookCreated> bookCreatedProducerFactory() {
+    ProducerFactory<String, BookCreated> bookCreatedProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -36,7 +36,7 @@ public class KafkaProducerConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, BookCreated> bookCreatedKafkaTemplate() {
+    KafkaTemplate<String, BookCreated> bookCreatedKafkaTemplate() {
         return new KafkaTemplate<>(bookCreatedProducerFactory());
     }
 }

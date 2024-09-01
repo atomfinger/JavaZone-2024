@@ -16,14 +16,14 @@ public class ClientConfiguration {
     }
 
     @Bean
-    public DefaultOrderServiceClient orderServiceClient() {
+    DefaultOrderServiceClient orderServiceClient() {
         var apiClient = new ApiClient();
         apiClient.setBasePath(apiConfiguration.getOrderEndpoint());
         return new DefaultOrderServiceClient(apiClient);
     }
 
     @Bean
-    public DefaultInventoryServiceClient inventoryServiceClient() {
+    DefaultInventoryServiceClient inventoryServiceClient() {
         var apiClient = new io.github.atomfinger.javazone.bookstore.inventoryservice.invoker.ApiClient();
         apiClient.setBasePath(apiConfiguration.getInventoryEndpoint());
         return new DefaultInventoryServiceClient(apiClient);

@@ -5,7 +5,7 @@ import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
 import java.util.Date;
 
 public record AddBookMessage(Long bookId, String title, String description, String isbn, String authorName,
-                             Integer pageNumbers, Date publishedDate, String genre) {
+        Integer pageNumbers, Date publishedDate, String genre) {
 
     public Book toBook() {
         var book = new Book();
