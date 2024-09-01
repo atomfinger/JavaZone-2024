@@ -39,7 +39,7 @@ In this fictional system we have multiple dependencies:
 - OrderService: Keeps track of the book orders.
 - BestReads: A fictional third-party service that has an API to provide review scores.
 - Database: The BookService's SQL database.
-- BookStoreService also consumes and producses Kafka messages.
+- BookStoreService also consumes and produces Kafka messages.
 
 #### Test related tools used in the project
 
