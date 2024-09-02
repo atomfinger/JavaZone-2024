@@ -6,6 +6,18 @@ _Test more and better with less friction!_
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=821554819)
 
+<!--toc:start-->
+- [JavaZone Presentation Project - 2024](#javazone-presentation-project-2024)
+    - [Description](#description)
+      - [Package Overview](#package-overview)
+      - [Overall architecture](#overall-architecture)
+      - [Test related tools used in the project](#test-related-tools-used-in-the-project)
+    - [Requirements](#requirements)
+    - [Build](#build)
+    - [Running tests](#running-tests)
+<!--toc:end-->
+
+
 ### Description
 
 #### Package Overview
