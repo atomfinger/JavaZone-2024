@@ -6,8 +6,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.testcontainers.containers.PostgreSQLContainer;
-
 import javax.sql.DataSource;
 
 @TestConfiguration
@@ -15,7 +13,7 @@ public class PersistenceTestConfig {
 
     @Bean
     @Primary
-    public DataSource dataSource() {
+    DataSource dataSource() {
         var postgresContainer = BaseDatabaseIntegrationTest.postgresDB;
         return DataSourceBuilder.create()
                 .url(postgresContainer.getJdbcUrl())
@@ -27,7 +25,7 @@ public class PersistenceTestConfig {
 
     @Bean
     @Primary
-    public Flyway flyway(DataSource dataSource) {
+    Flyway flyway(DataSource dataSource) {
         return Flyway.configure()
                 .dataSource(dataSource)
                 .locations("classpath:db/migrations")
