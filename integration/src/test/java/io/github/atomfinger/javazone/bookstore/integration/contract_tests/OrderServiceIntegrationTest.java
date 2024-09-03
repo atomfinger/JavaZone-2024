@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = { TestApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ExtendWith({ SpringExtension.class, StubRunnerExtension.class })
-@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.LOCAL, ids = "bookstore:external_orderservice:unspecified:stubs:8080")
+@AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.LOCAL, ids = "bookstore:external_orderservice:unspecified:stubs:8080", deleteStubsAfterTest = false)
 class OrderServiceIntegrationTest {
 
     @Autowired
