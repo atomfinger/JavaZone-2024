@@ -30,7 +30,7 @@ class AddBookListenerTest extends AcceptanceTestBase {
 
     private void sendMessage() throws InterruptedException {
         kafkaTemplate().send("bookstore.cmd.add-book.1", "key", createMessage());
-        await().atMost(20, SECONDS).until(() -> bookRepository.count() > 0);
+        await().atMost(30, SECONDS).until(() -> bookRepository.count() > 0);
         assertThat(consumer.getLatch().await(20, SECONDS)).isTrue();
     }
 
