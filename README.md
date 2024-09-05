@@ -20,6 +20,8 @@ _Test more and better with less friction!_
 
 ### Description
 
+This project is based on a talk I did at JavaZone 2024. The slides can be found [here](./Javazone.pptx).
+
 #### Package Overview
 
 - Web: Contains the web API
