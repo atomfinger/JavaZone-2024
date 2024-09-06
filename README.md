@@ -20,7 +20,9 @@ _Test more and better with less friction!_
 
 ### Description
 
-This project is based on a talk I did at JavaZone 2024. The slides can be found [here](./Javazone.pptx).
+This project is based on a talk I did at JavaZone 2024.
+ - Slides can be downloaded here: [Javazone.pptx)](./Javazone.pptx).
+ - The talk can be watched on my website ([https://lindbakk.com/blog/modern-testing-test-more-and-better-with-less-friction-talk-javazone-2024](https://lindbakk.com/blog/modern-testing-test-more-and-better-with-less-friction-talk-javazone-2024)) or Vimeo ([https://vimeo.com/showcase/11348501/video/1006510177](https://vimeo.com/showcase/11348501/video/1006510177))
 
 #### Package Overview
 
