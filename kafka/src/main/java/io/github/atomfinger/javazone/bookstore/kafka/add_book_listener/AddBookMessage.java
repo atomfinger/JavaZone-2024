@@ -9,7 +9,6 @@ public record AddBookMessage(Long bookId, String title, String description, Stri
 
     public Book toBook() {
         var book = new Book();
-        book.setBookId(bookId);
         book.setTitle(title);
         book.setDescription(description);
         book.setIsbn(isbn);

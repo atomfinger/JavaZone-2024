@@ -10,5 +10,6 @@ dependencies {
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.flywaydb:flyway-core'
     testImplementation 'com.approvaltests:approvaltests:24.21.0'
+    testImplementation 'com.google.code.gson:gson:2.13.0'
     testImplementation 'org.awaitility:awaitility:4.3.0'
 }
