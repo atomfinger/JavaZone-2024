@@ -23,7 +23,7 @@ public abstract class BaseIntegrationTest {
     static {
         mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE);
         mockServerContainer.start();
-        kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"));
+        kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.5.3"));
         kafka.start();
     }
 

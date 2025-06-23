@@ -13,3 +13,15 @@ dependencies {
     testImplementation 'com.google.code.gson:gson:2.13.1'
     testImplementation 'org.awaitility:awaitility:4.3.0'
 }
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:1.19.0"
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:1.19.0"
+    }
+}
