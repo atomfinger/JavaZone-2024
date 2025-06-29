@@ -1,6 +1,7 @@
 package io.github.atomfinger.javazone.bookstore.integration;
 
 import io.github.atomfinger.javazone.bookstore.integration.web.InventoryServiceIntegration;
+import io.github.atomfinger.javazone.bookstore.integration.web.InventoryServiceIntegration;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockserver.client.MockServerClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,25 +10,26 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.MockServerContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
+@Testcontainers
 @SpringBootTest(classes = {TestApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public abstract class BaseIntegrationTest {
 
     public static final DockerImageName MOCKSERVER_IMAGE = DockerImageName.parse("mockserver/mockserver")
             .withTag("mockserver-" + MockServerClient.class.getPackage().getImplementationVersion());
 
-    public static KafkaContainer kafka;
-    public static MockServerContainer mockServerContainer;
+    @Container
+    public static KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.3.2"));
 
-    static {
-        mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE);
-        mockServerContainer.start();
-        kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"));
-        kafka.start();
-    }
+    @Container
+    public static MockServerContainer mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE);
 
-    public MockServerClient mockServerClient = new MockServerClient("localhost", mockServerContainer.getServerPort());
+    // mockServerClient needs to be initialized after mockServerContainer is started.
+    // @Container ensures containers are started before tests, so BeforeEach is a safe place.
+    public MockServerClient mockServerClient;
 
     @Autowired
     public InventoryServiceIntegration inventoryService;
@@ -41,6 +43,8 @@ public abstract class BaseIntegrationTest {
 
     @BeforeEach
     public void setup() {
+        // Initialize mockServerClient here, after the container is guaranteed to be started.
+        mockServerClient = new MockServerClient(mockServerContainer.getHost(), mockServerContainer.getServerPort());
         mockServerClient.reset();
     }
 }
