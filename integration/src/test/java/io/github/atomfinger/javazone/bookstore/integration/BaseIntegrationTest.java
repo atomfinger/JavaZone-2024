@@ -41,9 +41,10 @@ public abstract class BaseIntegrationTest {
 
     @Container
     public static MockServerContainer mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE)
-            .waitingFor(Wait.forHttp("/status") // Changed path to /status
-                    .forStatusCode(200)
-                    .withStartupTimeout(Duration.ofSeconds(60)));
+            // Reverted to forListeningPort as /mockserver/status and /status health checks returned 404.
+            // This is less strict but allows tests to proceed if the port is open,
+            // even if the application within isn't fully reporting healthy via HTTP GET.
+            .waitingFor(Wait.forListeningPort().withStartupTimeout(Duration.ofSeconds(60)));
 
     public MockServerClient mockServerClient;
 
