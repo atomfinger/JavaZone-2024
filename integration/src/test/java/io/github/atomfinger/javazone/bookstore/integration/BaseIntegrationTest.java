@@ -41,7 +41,9 @@ public abstract class BaseIntegrationTest {
 
     @Container
     public static MockServerContainer mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE)
-            .waitingFor(Wait.forListeningPort().withStartupTimeout(Duration.ofSeconds(60)));
+            .waitingFor(Wait.forHttp("/mockserver/status")
+                    .forStatusCode(200)
+                    .withStartupTimeout(Duration.ofSeconds(60)));
 
     public MockServerClient mockServerClient;
 
