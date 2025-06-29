@@ -41,7 +41,7 @@ public abstract class BaseIntegrationTest {
 
     @Container
     public static MockServerContainer mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE)
-            .waitingFor(Wait.forHttp("/mockserver/status")
+            .waitingFor(Wait.forHttp("/status") // Changed path to /status
                     .forStatusCode(200)
                     .withStartupTimeout(Duration.ofSeconds(60)));
 
