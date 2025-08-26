@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
     testImplementation project(':external_orderservice')
-    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.7'
     implementation 'org.springframework.kafka:spring-kafka'
     testImplementation 'org.springframework.cloud:spring-cloud-contract-stub-runner'
     testImplementation "org.testcontainers:kafka"
