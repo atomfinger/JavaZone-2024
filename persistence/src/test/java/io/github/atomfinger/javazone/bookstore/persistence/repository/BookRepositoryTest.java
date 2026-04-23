@@ -2,8 +2,7 @@ package io.github.atomfinger.javazone.bookstore.persistence.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class BookRepositoryTest extends BaseDatabaseIntegrationTest {
         book.setIsbn("9780134685991");
         book.setAuthorName("Joshua Bloch");
         book.setPageNumbers(416);
-        book.setPublishedDate(new GregorianCalendar(2018, Calendar.JANUARY, 6).getTime());
+        book.setPublishedDate(LocalDate.of(2018, 1, 6));
         book.setGenre("Programming");
         return book;
     }

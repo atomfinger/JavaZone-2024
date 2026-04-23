@@ -1,17 +1,15 @@
 package io.github.atomfinger.javazone.bookstore.kafka.acceptance_test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.atomfinger.javazone.bookstore.kafka.acceptance_test.consumer.KafkaStringConsumer;
 import io.github.atomfinger.javazone.bookstore.kafka.add_book_listener.AddBookMessage;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.json.JsonMapper;
 
 import org.approvaltests.JsonApprovals;
-import org.approvaltests.namer.NamerFactory;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.approvaltests.namer.NamerFactory.asMachineSpecificTest;
@@ -23,14 +21,14 @@ class AddBookListenerTest extends AcceptanceTestBase {
     @Autowired
     KafkaStringConsumer consumer;
     @Autowired
-     ObjectMapper mapper;
+    JsonMapper jsonMapper;
 
     @Test
-    public void given_that_we_add_a_new_book_then_new_book_should_be_added_to_db() throws InterruptedException, JsonProcessingException {
+    public void given_that_we_add_a_new_book_then_new_book_should_be_added_to_db() throws InterruptedException, JacksonException {
         sendMessage();
         var result = bookRepository.findAll().iterator().next();
         asMachineSpecificTest(() -> "book_stored_in_db");
-        JsonApprovals.verifyAsJson(result);
+        JsonApprovals.verifyJson(jsonMapper.writeValueAsString(result));
         await().atMost(10, SECONDS).until(() -> consumer.getPayload() != null);
         asMachineSpecificTest(() -> "message_sent_to_kafka");
         JsonApprovals.verifyJson(consumer.getPayload());
@@ -50,7 +48,7 @@ class AddBookListenerTest extends AcceptanceTestBase {
                 "9780134685992",
                 "Joshua Bloch",
                 416,
-                Date.valueOf("2018-01-06"),
+                LocalDate.of(2018, 1, 6),
                 "Programming");
 
     }

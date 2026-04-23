@@ -1,7 +1,7 @@
 plugins {
     id 'groovy'
     id 'maven-publish'
-    id 'org.springframework.cloud.contract' version '4.3.3'
+    id 'org.springframework.cloud.contract' version '5.0.2'
 }
 
 

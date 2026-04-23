@@ -40,6 +40,10 @@ public abstract class BaseIntegrationTest {
         registry.add("api.best-reads-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort());
         registry.add("api.order-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort());
         registry.add("spring.kafka.bootstrap-servers", () -> kafka.getBootstrapServers());
+        registry.add("spring.kafka.consumer.auto-offset-reset", () -> "earliest");
+        registry.add("spring.kafka.consumer.group-id", () -> "test-consumer");
+        registry.add("spring.kafka.consumer.value-deserializer", () -> "org.apache.kafka.common.serialization.StringDeserializer");
+        registry.add("spring.kafka.consumer.key-deserializer", () -> "org.apache.kafka.common.serialization.StringDeserializer");
     }
 
     @BeforeEach

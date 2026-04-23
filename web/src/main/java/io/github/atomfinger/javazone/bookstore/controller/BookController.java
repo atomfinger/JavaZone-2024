@@ -1,6 +1,6 @@
 package io.github.atomfinger.javazone.bookstore.controller;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +44,7 @@ public class BookController {
     }
 
     public record BookResponse(Long bookId, String title, String description, String isbn, String authorName,
-            Integer pageNumbers, Date publishedDate, String genre, Integer numberOfOrders,
+            Integer pageNumbers, LocalDate publishedDate, String genre, Integer numberOfOrders,
             boolean isInStock, Integer rating) {
     }
 }
