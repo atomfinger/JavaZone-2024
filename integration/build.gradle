@@ -7,7 +7,10 @@ plugins {
 dependencies {
     testImplementation project(':external_orderservice')
     implementation 'org.openapitools:jackson-databind-nullable:0.2.10'
-    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.core:jackson-core'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'org.springframework.boot:spring-boot-starter-kafka'
     testImplementation 'org.springframework.cloud:spring-cloud-contract-stub-runner'
     testImplementation "org.testcontainers:kafka"
     testImplementation 'org.awaitility:awaitility:4.3.0'
