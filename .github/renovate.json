@@ -4,6 +4,7 @@
     "config:recommended"
   ],
   "schedule": ["every weekend"],
+  "automerge": true,
   "labels": ["dependencies"],
   "gradle": {
     "enabled": true
@@ -16,6 +17,6 @@
     {
       "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions"
-    }
+    },
   ]
 }
