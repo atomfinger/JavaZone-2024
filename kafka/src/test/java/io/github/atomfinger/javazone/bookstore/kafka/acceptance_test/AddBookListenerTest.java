@@ -1,7 +1,5 @@
 package io.github.atomfinger.javazone.bookstore.kafka.acceptance_test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.atomfinger.javazone.bookstore.kafka.acceptance_test.consumer.KafkaStringConsumer;
 import io.github.atomfinger.javazone.bookstore.kafka.add_book_listener.AddBookMessage;
 
@@ -22,11 +20,9 @@ class AddBookListenerTest extends AcceptanceTestBase {
 
     @Autowired
     KafkaStringConsumer consumer;
-    @Autowired
-     ObjectMapper mapper;
 
     @Test
-    public void given_that_we_add_a_new_book_then_new_book_should_be_added_to_db() throws InterruptedException, JsonProcessingException {
+    public void given_that_we_add_a_new_book_then_new_book_should_be_added_to_db() throws InterruptedException {
         sendMessage();
         var result = bookRepository.findAll().iterator().next();
         asMachineSpecificTest(() -> "book_stored_in_db");
