@@ -31,6 +31,7 @@ class AddBookListenerTest extends AcceptanceTestBase {
         var result = bookRepository.findAll().iterator().next();
         asMachineSpecificTest(() -> "book_stored_in_db");
         JsonApprovals.verifyAsJson(result);
+        await().atMost(10, SECONDS).until(() -> consumer.getPayload() != null);
         asMachineSpecificTest(() -> "message_sent_to_kafka");
         JsonApprovals.verifyJson(consumer.getPayload());
     }

@@ -36,7 +36,8 @@ public abstract class AcceptanceTestBase {
                 .withUsername("test")
                 .withPassword("test");
         postgresDB.start();
-        kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"));
+        kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.7.1"))
+                .withKraft();
         kafka.start();
     }
 

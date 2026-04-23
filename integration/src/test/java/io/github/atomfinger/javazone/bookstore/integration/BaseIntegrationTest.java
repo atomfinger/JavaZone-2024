@@ -11,11 +11,12 @@ import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.MockServerContainer;
 import org.testcontainers.utility.DockerImageName;
 
-@SpringBootTest(classes = {TestApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = { TestApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public abstract class BaseIntegrationTest {
 
-    public static final DockerImageName MOCKSERVER_IMAGE = DockerImageName.parse("mockserver/mockserver")
-            .withTag("mockserver-" + MockServerClient.class.getPackage().getImplementationVersion());
+    public static final DockerImageName MOCKSERVER_IMAGE =
+            DockerImageName.parse("mockserver/mockserver")
+                    .withTag("mockserver-" + MockServerClient.class.getPackage().getImplementationVersion());
 
     public static KafkaContainer kafka;
     public static MockServerContainer mockServerContainer;
@@ -23,7 +24,8 @@ public abstract class BaseIntegrationTest {
     static {
         mockServerContainer = new MockServerContainer(MOCKSERVER_IMAGE);
         mockServerContainer.start();
-        kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"));
+        kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.7.1"))
+                .withKraft();
         kafka.start();
     }
 
@@ -36,6 +38,7 @@ public abstract class BaseIntegrationTest {
     static void configureProperties(DynamicPropertyRegistry registry) {
         registry.add("api.inventory-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort());
         registry.add("api.best-reads-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort());
+        registry.add("api.order-endpoint", () -> "http://localhost:" + mockServerContainer.getServerPort());
         registry.add("spring.kafka.bootstrap-servers", () -> kafka.getBootstrapServers());
     }
 

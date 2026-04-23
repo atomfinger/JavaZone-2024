@@ -15,15 +15,11 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 /**
  * This is an example of a test where we integrate with a service that does not
- * have:
- * - OpenAPI
- * - A stable test environment we can test against
- * - Contract tests
- * <p>
+ * have: - OpenAPI - A stable test environment we can test against - Contract
+ * tests
+ *
  * This is the least preferred way to test and other options should be
  * considered before this.
- * <p>
- * It
  */
 class BestReadsServiceIntegrationTest extends BaseIntegrationTest {
 
@@ -37,27 +33,25 @@ class BestReadsServiceIntegrationTest extends BaseIntegrationTest {
         var result = bestReadsServiceIntegration
                 .getScoresByIsbn(List.of("9780142424179", "9780765326355", "9780061120084"));
 
-        assertThat(result)
-                .containsEntry("9780142424179", 1)
+        assertThat(result).containsEntry("9780142424179", 1)
                 .containsEntry("9780765326355", 5)
                 .containsEntry("9780061120084", 0)
                 .hasSize(3);
     }
 
     private void createMockServerExpectation() {
-        mockServerClient.when(request().withPath("/api/scores")
-                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .withBody(new JsonBody("""
-                        {"isbns" : [ "9780142424179", "9780765326355", "9780061120084" ]}
-                        """)))
-                .respond(response().withStatusCode(200)
+        mockServerClient
+                .when(request().withPath("/api/scores")
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                        .withBody("""
-                                { "reviews": [
-                                {"isbn": "9780142424179", "score": 1},
-                                {"isbn": "9780765326355", "score": 5},
-                                {"isbn": "9780061120084", "score": 0}
-                                ] }
-                                """));
+                        .withBody(new JsonBody("""
+                                {"isbns" : [ "9780142424179", "9780765326355", "9780061120084" ]}
+                                """)))
+                .respond(response().withStatusCode(200).withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE).withBody("""
+                        { "reviews": [
+                            {"isbn": "9780142424179", "score": 1},
+                            {"isbn": "9780765326355", "score": 5},
+                            {"isbn": "9780061120084", "score": 0}
+                        ] }
+                        """));
     }
 }
