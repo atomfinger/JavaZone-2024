@@ -2,7 +2,6 @@ package io.github.atomfinger.javazone.bookstore.integration;
 
 import io.github.atomfinger.javazone.bookstore.integration.web.BestReadsServiceIntegration;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 import org.mockserver.model.JsonBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,11 +17,9 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
  * This is an example of a test where we integrate with a service that does not
  * have: - OpenAPI - A stable test environment we can test against - Contract
  * tests
- * <p>
+ *
  * This is the least preferred way to test and other options should be
  * considered before this.
- * <p>
- * It
  */
 class BestReadsServiceIntegrationTest extends BaseIntegrationTest {
 
@@ -30,7 +27,6 @@ class BestReadsServiceIntegrationTest extends BaseIntegrationTest {
     BestReadsServiceIntegration bestReadsServiceIntegration;
 
     @Test
-    @Disabled
     public void when_asking_for_review_scores_then_we_should_be_able_to_read_the_result() {
         createMockServerExpectation();
 
@@ -52,9 +48,9 @@ class BestReadsServiceIntegrationTest extends BaseIntegrationTest {
                                 """)))
                 .respond(response().withStatusCode(200).withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE).withBody("""
                         { "reviews": [
-                        {"isbn": "9780142424179", "score": 1},
-                        {"isbn": "9780765326355", "score": 5},
-                        {"isbn": "9780061120084", "score": 0}
+                            {"isbn": "9780142424179", "score": 1},
+                            {"isbn": "9780765326355", "score": 5},
+                            {"isbn": "9780061120084", "score": 0}
                         ] }
                         """));
     }

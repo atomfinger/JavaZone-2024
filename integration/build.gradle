@@ -1,17 +1,17 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 
 plugins {
-    id "org.openapi.generator" version "7.13.0"
+    id "org.openapi.generator" version "7.21.0"
 }
 
 dependencies {
     testImplementation project(':external_orderservice')
-    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.10'
     implementation 'org.springframework.kafka:spring-kafka'
     testImplementation 'org.springframework.cloud:spring-cloud-contract-stub-runner'
     testImplementation "org.testcontainers:kafka"
     testImplementation 'org.awaitility:awaitility:4.3.0'
-    testImplementation 'org.assertj:assertj-core:3.27.3'
+    testImplementation 'org.assertj:assertj-core:3.27.7'
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:mockserver'
     testImplementation 'org.mock-server:mockserver-client-java:5.15.0'
