@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockserver.model.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import static org.mockserver.model.HttpRequest.request;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
@@ -59,7 +58,7 @@ public class ListBooksTest extends AcceptanceTestBase {
         book.setIsbn("9780134685991");
         book.setAuthorName("Joshua Bloch");
         book.setPageNumbers(416);
-        book.setPublishedDate(new GregorianCalendar(2018, Calendar.JANUARY, 6).getTime());
+        book.setPublishedDate(LocalDate.of(2018, 1, 6));
         book.setGenre("Programming");
         return book;
     }

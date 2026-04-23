@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockserver.client.MockServerClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -30,8 +30,7 @@ public abstract class AcceptanceTestBase {
         postgresDB.start();
     }
 
-    @Autowired
-    public TestRestTemplate restTemplate;
+    public RestTemplate restTemplate = new RestTemplate();
     public MockServerClient mockServerClient = new MockServerClient("localhost", mockServerContainer.getServerPort());
     @LocalServerPort
     private int port;

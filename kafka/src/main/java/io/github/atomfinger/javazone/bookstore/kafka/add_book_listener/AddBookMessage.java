@@ -2,10 +2,10 @@ package io.github.atomfinger.javazone.bookstore.kafka.add_book_listener;
 
 import io.github.atomfinger.javazone.bookstore.persistence.entities.Book;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record AddBookMessage(Long bookId, String title, String description, String isbn, String authorName,
-        Integer pageNumbers, Date publishedDate, String genre) {
+        Integer pageNumbers, LocalDate publishedDate, String genre) {
 
     public Book toBook() {
         var book = new Book();

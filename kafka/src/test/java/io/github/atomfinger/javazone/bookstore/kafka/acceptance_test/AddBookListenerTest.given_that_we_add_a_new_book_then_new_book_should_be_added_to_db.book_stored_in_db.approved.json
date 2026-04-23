@@ -1,10 +1,10 @@
 {
-  "bookId": 1,
-  "title": "Effective Java",
-  "description": "A comprehensive guide to programming in Java.",
-  "isbn": "9780134685992",
   "authorName": "Joshua Bloch",
+  "bookId": 1,
+  "description": "A comprehensive guide to programming in Java.",
+  "genre": "Programming",
+  "isbn": "9780134685992",
   "pageNumbers": 416,
-  "publishedDate": "Jan 6, 2018",
-  "genre": "Programming"
+  "publishedDate": "2018-01-06",
+  "title": "Effective Java"
 }

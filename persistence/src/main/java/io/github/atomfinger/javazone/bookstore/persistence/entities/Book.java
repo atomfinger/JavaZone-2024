@@ -2,7 +2,7 @@ package io.github.atomfinger.javazone.bookstore.persistence.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "books")
@@ -29,8 +29,7 @@ public class Book {
     private Integer pageNumbers;
 
     @Column(name = "published_date")
-    @Temporal(TemporalType.DATE)
-    private Date publishedDate;
+    private LocalDate publishedDate;
 
     @Column(name = "genre", length = 100)
     private String genre;
@@ -83,11 +82,11 @@ public class Book {
         this.pageNumbers = pageNumbers;
     }
 
-    public Date getPublishedDate() {
+    public LocalDate getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(Date publishedDate) {
+    public void setPublishedDate(LocalDate publishedDate) {
         this.publishedDate = publishedDate;
     }
 
