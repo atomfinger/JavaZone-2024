@@ -10,6 +10,6 @@ dependencies {
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-flyway'
     testImplementation 'com.approvaltests:approvaltests:31.0.0'
-    testImplementation 'com.google.code.gson:gson:2.13.2'
+    testImplementation 'com.google.code.gson:gson:2.14.0'
     testImplementation 'org.awaitility:awaitility:4.3.0'
 }
