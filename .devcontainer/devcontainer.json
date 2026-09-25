@@ -8,7 +8,7 @@
       "installMaven": "false",
       "installGradle": "true"
     },
-    "ghcr.io/devcontainers/features/docker-in-docker:2":{}
+    "ghcr.io/devcontainers/features/docker-in-docker:4":{}
   },
   "forwardPorts": [2222, 8000],
 
