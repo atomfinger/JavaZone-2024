@@ -14,7 +14,7 @@ dependencies {
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-flyway'
     testImplementation 'org.testcontainers:mockserver'
-    testImplementation 'org.mock-server:mockserver-client-java:9.1.0'
+    testImplementation 'org.mock-server:mockserver-client-java:9.2.0'
 }
 
 dependencyManagement {
