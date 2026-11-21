@@ -16,7 +16,7 @@ subprojects {
     apply plugin: 'io.spring.dependency-management'
 
     ext {
-        set('springCloudVersion', "2025.1.4")
+        set('springCloudVersion', "2026.0.0")
         set('springCloudContractVersion', "5.0.3")
         set('testcontainers.version', "1.21.4")
     }
